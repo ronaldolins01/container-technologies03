@@ -98,8 +98,8 @@ jobs:
           task-definition: ./app/deploy/ecs-task-definition.json
           container-name: ${{ env.IMAGE_NAME }}
           image: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG_APP }}
-          taskRoleArn: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/LabRole
-          executionRoleArn: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/LabRole
+          taskRoleArn: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/LabRole
+          executionRoleArn: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/LabRole
 
       - name: View inside file ecs-task-definition.json
         run: |
