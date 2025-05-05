@@ -102,7 +102,7 @@ jobs:
       - name: Replace AWS_ACCOUNT_ID in ecs-task-definition.json
 
         run: |
-          sed -i "s/{{AWS_ACCOUNT_ID}}/${{ teste }}/g" ./deploy/ecs-task-definition.json
+          sed -i "s/{{AWS_ACCOUNT_ID}}/${{ secrets.AWS_ACCOUNT_ID }}/g" ./deploy/ecs-task-definition.json
 
       - name: Register Task Definition
         id: task-definition
