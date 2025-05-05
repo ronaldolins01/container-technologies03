@@ -93,15 +93,13 @@ jobs:
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: ./app/deploy/ecs-task-definition.json
           container-name: ${{ env.IMAGE_NAME }}
           image: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG_APP }}
-
-      - name: Replace AWS_ACCOUNT_ID in ecs-task-definition.json
-        run: |
-          sed -i "s/{{AWS_ACCOUNT_ID}}/${{ vars.AWS_ACCOUNT_ID }}/g" ./deploy/ecs-task-definition.json
+          taskRoleArn: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/LabRole
+          executionRoleArn: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/LabRole
 
       - name: View inside file ecs-task-definition.json
         run: |
