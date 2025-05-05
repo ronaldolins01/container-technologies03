@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ci-cd-app:v1.0.0
-    container_name: ci-cd-app
+    image: container-technologies:v1.0.0
+    container_name: container-technologies
     restart: always
     ports:
       - "8000:8000"
