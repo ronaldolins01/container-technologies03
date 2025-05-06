@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set TAG_APP with SHA
-        run: echo "TAG_APP=v1.0.0-$(echo $GITHUB_SHA | cut -c1-5)" >> $GITHUB_ENV
+        run: echo "TAG_APP=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Setup Python
         uses: actions/setup-python@v4
