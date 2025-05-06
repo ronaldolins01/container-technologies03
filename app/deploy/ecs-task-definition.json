@@ -2,7 +2,7 @@
     "containerDefinitions": [
         {
             "name": "container-technologies",
-            "image": "gersontpc/container-technologies:v1.0.0",
+            "image": "",
             "cpu": 0,
             "portMappings": [
                 {
