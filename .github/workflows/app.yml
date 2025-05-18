@@ -94,7 +94,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Show image name
-        run: echo "${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG_APP }}"
+        run: echo "${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ needs.Build.outputs.tag_app }}"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
