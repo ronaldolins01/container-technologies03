@@ -109,8 +109,7 @@ jobs:
 
       - name: Show TAG Image
         run: |
-          echo "Deploying app with tag ${{ needs.Build.outputs.tag_image }}"
-          echo "Deploying app with tag ${{ env.tag_image }}"
+          echo "Deploying app with tag ${{ steps.set_tag.outputs.image_tag }}"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
@@ -118,7 +117,7 @@ jobs:
         with:
           task-definition: ./app/deploy/ecs-task-definition.json
           container-name: ${{ env.IMAGE_NAME }}
-          image: ${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ needs.Build.outputs.tag_app }}
+          image: ${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.set_tag.outputs.image_tag }}
           taskRoleArn: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/LabRole
           executionRoleArn: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/LabRole
 
