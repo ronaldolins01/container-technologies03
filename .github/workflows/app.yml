@@ -93,9 +93,8 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: cat fqdn image
-        run: |
-          cat '${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG_APP }}'
+      - name: Show image name
+        run: echo "${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG_APP }}"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
