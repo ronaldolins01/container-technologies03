@@ -102,6 +102,9 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ vars.AWS_REGION }}
 
+      - name: Use TAG_APP from Build
+        run: echo ${{ needs.Build.outputs.tag_app }}
+
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
