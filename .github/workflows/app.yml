@@ -109,7 +109,7 @@ jobs:
 
       - name: Show TAG Image
         run: |
-          echo "Deploying app with tag ${{ steps.set_tag.outputs.image_tag }}"
+          echo "Deploying app with tag ${{ needs.Build.outputs.image_tag }}"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
