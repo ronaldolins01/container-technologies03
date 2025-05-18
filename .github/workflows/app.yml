@@ -36,7 +36,7 @@ jobs:
         id: set_tag_app
         run: |
           echo "TAG_APP=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> "$GITHUB_ENV"
-          echo "tag_app=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> "$GITHUB_OUTPUT"
+          echo "TAG_APP=$TAG_APP" >> "$GITHUB_OUTPUT"
 
       - name: Show tag name
         run: echo $TAG_APP
@@ -102,7 +102,7 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: Deploy app
+      - name: Show TAG Image
         run: |
           echo "Deploying app with tag ${{ needs.Build.outputs.tag_image }}"
           echo "Deploying app with tag ${{ env.tag_image }}"
