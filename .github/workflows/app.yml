@@ -36,6 +36,9 @@ jobs:
         id: set_tag_app
         run: echo "TAG_APP=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
 
+      - name: Show tag name
+        run: echo $TAG_APP
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
