@@ -33,10 +33,12 @@ jobs:
         id: set_tag_app
         run: |
           echo "TAG_APP=v${{ env.APP_VERSION }}-$(echo $GITHUB_SHA | cut -c1-7)" >> "$GITHUB_ENV"
-          echo "tag_app=${{ env.TAG_APP }}"
+
 
       - name: Show tag name
-        run: echo $TAG_APP
+        run: |
+          echo $TAG_APP
+          echo "tag_app=${{ env.TAG_APP }}"
 
       - name: Setup Python
         uses: actions/setup-python@v4
