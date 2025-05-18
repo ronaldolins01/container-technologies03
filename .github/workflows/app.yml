@@ -95,7 +95,7 @@ jobs:
 
       - name: cat fqdn image
         run: |
-          cat ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG_APP }}
+          cat '${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG_APP }}'
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
