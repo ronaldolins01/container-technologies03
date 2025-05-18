@@ -18,6 +18,8 @@ jobs:
   Build:
     name: 'Building app'
     runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.set_tag.outputs.image_tag }}
     defaults:
       run:
         shell: bash
@@ -30,10 +32,16 @@ jobs:
           fetch-depth: 0
 
       - name: Set TAG_APP with SHA
-        run: echo "TAG_APP=v${{ env.APP_VERSION }}-$(echo $GITHUB_SHA | cut -c1-7)" >> "$GITHUB_ENV"
+        run: |
+          echo "TAG_APP=v${{ env.APP_VERSION }}-$(echo $GITHUB_SHA | cut -c1-7)" >> "$GITHUB_ENV"
+          echo "image_tag=$TAG_APP" >> $GITHUB_OUTPUT
 
       - name: Show tag name
         run: echo $TAG_APP
+
+      - name: Show output tag
+        run: |
+          echo ${{ steps.set_tag.outputs.image_tag }}
 
       - name: Setup Python
         uses: actions/setup-python@v4
