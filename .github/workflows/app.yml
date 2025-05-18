@@ -34,7 +34,7 @@ jobs:
 
       - name: Set TAG_APP with SHA
         id: set_tag_app
-        run: echo "TAG_APP=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+        run: echo "tag_app=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_OUTPUT
 
       - name: Setup Python
         uses: actions/setup-python@v4
