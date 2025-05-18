@@ -34,7 +34,7 @@ jobs:
 
       - name: Set TAG_APP with SHA
         id: set_tag_app
-        run: echo "TAG_APP=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+        run: echo "tag_app=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_OUTPUT
 
       - name: Show tag name
         run: echo $TAG_APP
@@ -77,7 +77,7 @@ jobs:
           docker image push ${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG_APP }}
 
   Deploy:
-
+    name: 'Deploy App'
     needs: Build
     runs-on: ubuntu-latest
 
@@ -100,8 +100,8 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: Show image name
-        run: echo "${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ needs.Build.outputs.set_tag_app }}"
+      - name: Show tag image
+        run: echo "${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ needs.Build.outputs.tag_app }}"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
