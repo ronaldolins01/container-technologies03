@@ -39,7 +39,7 @@ jobs:
 
       - name: Set output tag_image
         id: get_version
-        run: echo "${{ env.TAG_APP }}" >> "$GITHUB_OUTPUTS"
+        run: echo "${{ env.TAG_APP }}" >> "$GITHUB_OUTPUT"
 
       - name: Setup Python
         uses: actions/setup-python@v4
