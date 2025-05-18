@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      tag_app: ${{ steps.set_tag.outputs.tag_app }}
+      tag_image: ${{ steps.set_tag_app.outputs.tag_image }}
 
     defaults:
       run:
