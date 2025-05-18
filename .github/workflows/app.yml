@@ -18,6 +18,9 @@ jobs:
     name: 'Building app'
     runs-on: ubuntu-latest
 
+    outputs:
+      tag_app: ${{ steps.set_tag_app.outputs.tag_app }}
+
     defaults:
       run:
         shell: bash
@@ -30,6 +33,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set TAG_APP with SHA
+        id: set_tag_app
         run: echo "TAG_APP=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Setup Python
