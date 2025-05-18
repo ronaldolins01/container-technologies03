@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      tag_app: ${{ steps.set_tag_app.outputs.tag_app }}
+      tag_app: ${{ steps.set_tag.outputs.tag_app }}
 
     defaults:
       run:
@@ -34,7 +34,7 @@ jobs:
 
       - name: Set TAG_APP with SHA
         id: set_tag_app
-        run: echo "tag_app=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_OUTPUT
+        run: echo "TAG_APP=v1.0.0-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Setup Python
         uses: actions/setup-python@v4
